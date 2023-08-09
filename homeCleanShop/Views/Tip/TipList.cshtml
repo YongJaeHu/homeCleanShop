@@ -1,0 +1,33 @@
+﻿@model List<Tip>
+@{
+    ViewData["Title"] = "index";
+}
+<style>
+    .col-md-4:hover {
+        box-shadow: -1px 9px 40px -12px #808080;
+    }
+</style>
+<center>
+    <h1>Tip List</h1>
+    <div class="row">
+        @foreach (var tip in Model)
+        {
+            <div class="card" style="width:20em;margin:10px">
+                <img src="https://do3jpz7qc76yu.cloudfront.net/@tip.Tip_Photo">
+                <div class="card-body">
+                    <div class="card-title">
+                        <h6>@tip.Tip_Title</h6>
+                    </div>
+                    <div class="card-button">
+                        <a class="btn btn-outline-primary"
+                           asp-action="DetailTipUser"
+                           asp-controller="Tip"
+                           asp-route-TipID="@tip.TipID">
+                            <i class="bi bi-eye-fill"></i> Show Details
+                        </a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+

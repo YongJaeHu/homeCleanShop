@@ -1,0 +1,69 @@
+﻿@model List<Service>
+@{
+    ViewData["Title"] = "ServiceList";
+}
+
+<style>
+    .col-md-4:hover {
+        box-shadow: -1px 9px 40px -12px #808080;
+    }
+</style>
+
+<center>
+    <h1>Service List</h1>
+@*    <br />*@
+
+    <hr />
+    @if (ViewBag.msg != "")
+    {
+        <span style="background-color:aquamarine">@ViewBag.msg</span>
+    }
+
+@*    <hr />
+
+    <br />*@
+
+    <div class="row">
+
+    @* Dynamic row based on database *@
+    @foreach (var service in Model)
+    {
+         <div class="col-md-4 col-xs-6 border-primary mb-3">
+            <div class="card mb-3" style="max-width: 540px;">
+                <div class="row g-0">
+                    <div class="col-md-12">
+                        <div class="card-header text-white bg-info">
+                            <p class="card-text">
+                                <h5 class="card-title">
+                                    @service.ServiceName
+                                 </h5>
+                             </p>
+                             </div>
+                        </div>
+                        <div class="col-md-6">
+                            <img src="https://do3jpz7qc76yu.cloudfront.net/@service.ServicePhoto" width="100%">
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card-body">
+                                <p class="card-text"><b>Name: </b>@service.ServiceName</p>
+                                <p class="card-text"><b>Price (RM): </b>@service.ServicePrice</p>
+                                <p class="card-text"><b>Duration (hour): </b>@service.ServiceTime</p>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="card-footer ">
+                                <p class="card-text">
+                                    <a class="btn btn-outline-primary float-right" asp-action="ServiceDetail" asp-controller="Service" asp-route-ServiceID="@service.ID">
+                                        <i class="bi bi-eye-fill"></i> Show Details
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    }
+    </div>
+</center>
+
+

@@ -1,0 +1,64 @@
+﻿@model List<Employee>
+@{
+    ViewData["Title"] = "index";
+}
+<center>
+    <p><h3>Employee List</h3></p>
+    <hr />
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Picture</th>
+                    <th>Name</th>
+                    <th>Biography</th>
+                    <th>Action</th>
+                    <th>
+                        <a class="btn btn-outline-primary " asp-action="AddForm" asp-controller="Employee">
+                                <i class="bi bi-file-earmark-plus"></i></i>Add
+                        </a>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var employee in Model)
+                {
+                    <tr>
+                        <td class="align-middle">
+                            <img class="rounded-circle" src="https://do3jpz7qc76yu.cloudfront.net/@employee.Employee_Photo" style="max-width:100px">
+                        </td>
+                        <td class="align-middle">@employee.Employee_Name</td>
+                        <td class="align-middle">@employee.Employee_Description</td>
+                        <td class="align-middle">
+                            <a class="btn btn-outline-secondary"
+                               asp-action="EditEmployeeShow"
+                               asp-controller="Employee"
+                               asp-route-EmployeeID="@employee.EmployeeID">
+                                <i class="bi bi-pencil-square"></i>Edit
+                            </a>
+                            <a class="btn btn-outline-danger"
+                               asp-action="EmployeeDelete"
+                               asp-controller="Employee"
+                               asp-route-EmployeeID="@employee.EmployeeID"
+                               onclick="return deleteCheck()">
+                                <i class="bi bi-trash"></i>Delete
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+<script>
+    function deleteCheck() {
+        if (window.confirm('Are you sure to delete?')) {
+            return true;
+        } else {
+            window.alert('Cancel the deletion');
+            return false;
+        }
+    }
+</script>
+

@@ -1,0 +1,66 @@
+﻿@model Service
+@{
+    ViewData["Title"] = "ServiceDetail";
+}
+
+<center>
+    <h1>Service Detail</h1>
+    <br />
+
+    @if (ViewBag.msg != "")
+    {
+        <span style="background-color:aquamarine">@ViewBag.msg</span>
+    }
+
+    <hr />
+
+    <div class="row">
+        <div class="col-md-8 offset-2">
+            <div class="card mb-12">
+                <div class="row g-0">
+                    <div class="col-md-12">
+                        <div class="card-header text-white bg-info">
+                            <p class="card-text">
+                                <h5 class="card-title">
+                                    @Model.ServiceName
+                                </h5>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <img src="https://do3jpz7qc76yu.cloudfront.net/@Model.ServicePhoto" width="100%">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <p class="card-text">
+                                <b>Price (RM): </b>
+                            <p class="card-text">@Model.ServicePrice</p>
+                            </p>
+                            <p class="card-text">
+                                <b>Duration (hour): </b>
+                            <p class="card-text">@Model.ServiceTime</p>
+                            </p>
+                            <p class="card-text">
+                                <b>Description: </b>
+                            <p class="card-text">@Model.ServiceDescription</p>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="card-footer">
+                            <p class="card-text">
+                                <a class="btn btn-outline-secondary float-right" asp-action="ServiceList">
+                                    Back to List
+                                </a>
+                                <a class="btn btn-success text-white"
+                                   asp-action="BookingForm" asp-controller="Booking"
+                                   asp-route-ServiceID="@Model.ID"><i class="bi bi-cart-plus"></i> Book Now</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</center>
+

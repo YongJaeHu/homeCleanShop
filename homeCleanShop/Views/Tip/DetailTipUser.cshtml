@@ -1,0 +1,56 @@
+﻿@model Tip
+@{
+    ViewData["Title"] = "TipsDetail";
+}
+
+<center>
+    <h1>Tips Detail</h1>
+    <br />
+
+    @if (ViewBag.msg != "")
+    {
+        <span style="background-color:aquamarine">@ViewBag.msg</span>
+    }
+
+    <hr />
+
+    <div class="row">
+        <div class="col-md-8 offset-2">
+            <div class="card mb-12">
+                <div class="row g-0">
+                    <div class="col-md-12">
+                        <div class="card-header text-white bg-info">
+                            <p class="card-text">
+                                <h5 class="card-title">
+                                    @Model.Tip_Title
+                                </h5>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <img src="https://do3jpz7qc76yu.cloudfront.net/@Model.Tip_Photo" width="100%">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <p class="card-text">
+                                <b>Description: </b>
+                            <p class="card-text">@Model.Tip_Description</p>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="card-footer">
+                            <p class="card-text">
+                                <a class="btn btn-outline-secondary float-right" asp-action="TipList">
+                                    Back to List
+                                </a>
+                                </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</center>
+
+

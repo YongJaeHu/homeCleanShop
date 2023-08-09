@@ -1,0 +1,91 @@
+﻿@model List<Booking>
+@{
+    ViewData["Title"] = "BookingList";
+}
+
+<center>
+    <h1>My Booking</h1>
+
+    <hr />
+    @if (ViewBag.msg != "")
+    {
+        <span style="background-color:aquamarine">@ViewBag.msg</span>
+    }
+    <div class="d-flex justify-content-end">
+        <form class="form-inline">
+            <input type="text" name="searchString" placeholder="Search Booking ID..." style="width: 320px; height: 38px;">
+            <button class="btn btn-outline-success" type="submit"><i class="bi bi-search"></i></button>
+        </form>
+    </div>
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Booking ID</th>
+                        <th>ServiceName</th>
+                        <th>BookingDate</th>
+                        <th>ServiceTime</th>
+                        <th>Status</th>
+                        <th>Action</th>
+
+                    </tr>
+
+                </thead>
+        @foreach (var booking in Model)
+        {
+            <tr>
+                        <td class="align-middle">@booking.BookingID</td>
+                        <td class="align-middle">@booking.ServiceName</td>
+                        <td class="align-middle">@booking.booking_date</td>
+                        <td class="align-middle">@booking.ServiceTime</td>
+                        <td class="align-middle">@booking.BookingStatus</td>
+                        @if (booking.BookingStatus == "Cancelled" || booking.BookingStatus == "Rejected")
+                {
+                    <td>
+                                <a class="btn btn-outline-danger" asp-action="DeleteBookingAdmin" asp-controller="Booking"
+                                   asp-route-BookingID="@booking.BookingID"><i class="bi bi-trash"></i>Delete</a>
+                    </td>
+                }
+                else if (@booking.BookingStatus == "Pending")
+                {
+                    <td>
+                                <a class="btn btn-outline-secondary"
+                                   asp-action="EditBooking"
+                                   asp-controller="Booking"
+                                   asp-route-BookingID="@booking.BookingID">
+                                    <i class="bi bi-pencil-square"></i>Edit
+                                </a>
+                                <a class="btn btn-outline-danger" asp-action="CancelBooking" asp-controller="Booking"
+                                   asp-route-BookingID="@booking.BookingID" onclick="return rejectCheck()"><i class="bi bi-calendar-x"></i>Cancel</a>
+                            </td>
+                }
+
+                else if (@booking.BookingStatus == "Accepted")
+                {
+                    <td>
+                                <a class="btn btn-outline-success" asp-action="DeleteBooking" asp-controller="Booking"
+                                   asp-route-BookingID="@booking.BookingID"><i class="bi bi-calendar-check"></i>Comfirmed</a>
+                                <a class="btn btn-outline-danger" asp-action="CancelBooking" asp-controller="Booking"
+                                   asp-route-BookingID="@booking.BookingID" onclick="return rejectCheck()"><i class="bi bi-calendar-x"></i>Cancel</a>
+                    </td>
+                }
+
+            </tr>
+        }
+
+
+
+    </table>
+</center>
+<script>
+    function rejectCheck() {
+        if (window.confirm('Are you sure to cancel the booking?')) {
+            return true;
+        } else {
+            window.alert('Thank for your reconsideration!');
+            return false;
+        }
+    }
+</script>
+

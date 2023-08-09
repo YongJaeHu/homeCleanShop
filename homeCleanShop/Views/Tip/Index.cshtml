@@ -1,0 +1,67 @@
+﻿@model List<Tip>
+@{
+    ViewData["Title"] = "index";
+}
+
+<h1 style="text-align: center;">Tip List</h1>
+<hr>
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Tip ID</th>
+                    <th>Tip Picture</th>
+                    <th>Tip Title</th>
+                    <th>Tip Description</th>
+                    <th>Action</th>
+                    <th>
+                        <a class="btn btn-outline-primary" asp-action="AddForm"
+                           asp-controller="Tip">
+                            <i class="bi bi-file-earmark-plus"></i>Add
+                        </a>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var tip in Model)
+                {
+                    <tr>
+                        <td class="align-middle">@tip.TipID</td>
+                        <td class="align-middle">
+                            <img src="https://do3jpz7qc76yu.cloudfront.net/@tip.Tip_Photo"
+                                 style="max-width:150px">
+                        </td>
+                        <td class="align-middle">@tip.Tip_Title</td>
+                        <td class="align-middle">@tip.Tip_Description</td>
+                        <td class="align-middle">
+                            <a class="btn btn-outline-secondary"
+                               asp-action="EditTipShow"
+                               asp-controller="Tip"
+                               asp-route-TipID="@tip.TipID">
+                                <i class="bi bi-pencil-square"></i>Edit
+                            </a>
+                            <a class="btn btn-outline-danger"
+                               asp-action="TipDelete"
+                               asp-controller="Tip"
+                               asp-route-TipID="@tip.TipID"
+                               onclick="return deleteCheck()">
+                                <i class="bi bi-trash"></i>Delete
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+<script>
+    function deleteCheck() {
+        if (window.confirm('Are you sure to delete?')) {
+            return true;
+        } else {
+            window.alert('Canceled');
+            return false;
+        }
+    }
+</script>

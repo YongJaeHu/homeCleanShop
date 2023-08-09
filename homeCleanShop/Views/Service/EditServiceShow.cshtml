@@ -1,0 +1,78 @@
+﻿@model Service
+
+@{
+    ViewData["Title"] = "EditServiceShow";
+}
+
+<div class="row text">
+    <div class="col-md-8 offset-2">
+        <center>
+            <h1>Update Service</h1>
+            <hr />
+        </center>
+        <div class="row">
+            <div class="col-md-8 offset-2">
+                <form method="post" asp-controller="Service"
+                      asp-action="EditServiceUpdate" enctype="multipart/form-data">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group text-center">
+                        <img src="https://do3jpz7qc76yu.cloudfront.net/@Model.ServicePhoto" id="ProfilePicturePreview"
+                             class="border-info rounded-circle"
+                             style="max-width:150px">
+                    </div>
+                    <div class="form-group mb-3" style="text-align:center">
+                        <input type="file" name="imagefiles" accept="image/*"
+                               multiple />
+                    </div>
+                    <div class="form-group text-center">
+                        <img id="ProfilePicturePreview"
+                             class="border-info rounded-circle"
+                             style="max-width: 150px" />
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="ID" class="control-label"></label>
+                        <input asp-for="ID" class="form-control" readonly />
+                        <span asp-validation-for="ID" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ServiceName" class="control-label"></label>
+                        <input asp-for="ServiceName" class="form-control" />
+                        <span asp-validation-for="ServiceName"
+                              class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ServiceDescription"
+                               class="control-label"></label>
+                        <input asp-for="ServiceDescription" class="form-control" />
+                        <span asp-validation-for="ServiceDescription"
+                              class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ServicePrice" class="control-label"></label>
+                        <input asp-for="ServicePrice" class="form-control" />
+                        <span asp-validation-for="ServicePrice"
+                              class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ServiceTime" class="control-label"></label>
+                        <input asp-for="ServiceTime" class="form-control" />
+                        <span asp-validation-for="ServiceTime"
+                              class="text-danger"></span>
+                    </div><br>
+
+                    <div class="form-group d-flex justify-content-between">
+                        <a class="btn btn-outline-secondary"
+                           asp-controller="Service" asp-action="Index">
+                            Show
+                            All
+                        </a>
+                        <input type="submit" value="Update"
+                               class="btn btn-outline-success float-right" />
+                        
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

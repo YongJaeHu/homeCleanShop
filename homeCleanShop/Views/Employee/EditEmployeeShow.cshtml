@@ -1,0 +1,77 @@
+﻿@model Employee
+
+@{
+    ViewData["Title"] = "EditEmployeeShow";
+}
+
+<div class="row text">
+    <div class="col-md-8 offset-2">
+
+        <center>
+            <h1>Update Employee </h1>
+                <hr />
+        </center>
+        <div class="row">
+            <div class="col-md-8 offset-2">
+                <form method="post" asp-controller="Employee"
+                      asp-action="EditEmployeeUpdate"
+                      enctype="multipart/form-data">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                    <div class="form-group text-center">
+                        <img class="rounded-circle"
+                             src="https://do3jpz7qc76yu.cloudfront.net/@Model.Employee_Photo"
+                             style="max-width:150px">
+                    </div>
+                    <div class="form-group mb-3" style="text-align:center">
+                        <input type="file" name="imagefiles" accept="image/*"
+                               multiple />
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="EmployeeID" class="control-label"></label>
+                        <input asp-for="EmployeeID" class="form-control"
+                               readonly />
+                        <span asp-validation-for="EmployeeID"
+                              class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Employee_Name"
+                               class="control-label"></label>
+                        <input asp-for="Employee_Name"
+                               class="form-control" />
+                        <span asp-validation-for="Employee_Name"
+                              class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Employee_Experience_Year"
+                               class="control-label"></label>
+                        <input asp-for="Employee_Experience_Year"
+                               class="form-control" />
+                        <span asp-validation-for="Employee_Experience_Year"
+                              class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Employee_Description"
+                               class="control-label"></label>
+                        <textarea asp-for="Employee_Description"
+                                  class="form-control"></textarea>
+                        <span asp-validation-for="Employee_Description"
+                              class="text-danger"></span>
+                    </div><br>
+
+                    <div class="form-group d-flex justify-content-between">
+                        <a class="btn btn-outline-secondary"
+                           asp-controller="Employee" asp-action="Index">
+                            Show
+                            All
+                        </a>
+                        <input type="submit" value="Update"
+                               class="btn btn-outline-success float-right" />
+                        
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+

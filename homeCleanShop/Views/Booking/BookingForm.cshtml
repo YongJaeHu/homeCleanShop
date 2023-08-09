@@ -1,0 +1,115 @@
+﻿@model homeCleanShop.Models.Booking
+
+@using Microsoft.AspNetCore.Identity
+@using homeCleanShop.Areas.Identity.Data
+
+@inject SignInManager<homeCleanShopUser> SignInManager
+@inject UserManager<homeCleanShopUser> UserManager
+
+
+@{
+    ViewData["Title"] = "BookingForm";
+}
+
+<div class="row">
+    <div class="col-md-8 offset-2">
+        <div class="text-center">
+
+        <h3>Service Summary</h3>
+        <hr />
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Service Name</th>
+                        <th>Service Duration (hour)</th>
+                        <th>Service Price</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="align-middle">@ViewBag.ServiceName</td>
+                        <td class="align-middle">@ViewBag.ServiceTime</td>
+                        <td class="align-middle">@ViewBag.ServicePrice.ToString("c")</td>
+                        <td class="align-middle">
+                    </tr>
+                    
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="1"></td>
+                        <td><b>Total:</b></td>
+                        <td>
+                            @ViewBag.ServicePrice.ToString("c")
+                        </td>
+                        <td></td>
+                    </tr>
+                </tfoot>
+            </table>
+    </div>
+</div>
+
+
+    <div class="row mt-5">
+        <div class="col-md-8 offset-2">
+            <div class="text-center">
+            <form asp-action="BookingForm" asp-controller="Booking" method="post">
+                <h3>Booking</h3>
+                <hr />
+                <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+                    <input type="hidden" asp-for="BookingID" />
+                <input type="hidden" asp-for="ServiceID" value="@ViewBag.ServiceID" />
+                <input type="hidden" asp-for="cleanShopUserId" value="@ViewBag.UserID" />
+                <div class="form-group mb-3">
+                    <label asp-for="booking_date" class="control-label"></label>
+                    <input asp-for="booking_date" class="form-control" />
+                    <span asp-validation-for="booking_date" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label for="payment_method" class="control-label">Payment Method</label>
+                    <select id="payment_method" name="payment_method" class="form-control">
+                        <option value="cash">Cash</option>
+                        <option value="credit">Credit Card</option>
+                    </select>
+                </div>
+
+                <div id="creditCardForm" style="display: none;">
+                    <div class="form-group mb-3">
+                        <label for="cardNumber" class="control-label">Card Number</label>
+                        <input type="text" id="cardNumber" class="form-control" />
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="cvv" class="control-label">CVV</label>
+                        <input type="text" id="cvv" class="form-control" />
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="cardHolderName" class="control-label">Card Holder Name</label>
+                        <input type="text" id="cardHolderName" class="form-control" />
+                    </div>
+                </div>
+                    <div class="form-group d-flex justify-content-between">
+                        <a class="btn btn-outline-secondary" asp-action="ServiceList" asp-controller="Service">
+                            Back to List
+                        </a>
+                    <button id="registerSubmit" type="submit" class="btn btn-outline-success float-right">Book</button>
+
+                    </div>
+            </form>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        document.getElementById("payment_method").addEventListener("change", function () {
+            var creditCardForm = document.getElementById("creditCardForm");
+            if (this.value === "credit") {
+                creditCardForm.style.display = "block";
+            } else {
+                creditCardForm.style.display = "none";
+            }
+        });
+    </script>
+}
+

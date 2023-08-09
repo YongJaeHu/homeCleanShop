@@ -1,0 +1,76 @@
+﻿@model List<Review>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<style>
+    .add {
+        text-align: right;
+        margin-top: 10px;
+        margin-right: 100px;
+    }
+</style>
+
+<center>
+    <h1>User Rating and Review</h1>
+    <hr />
+    <div class="add">
+        <a class="btn btn-outline-primary " asp-action="AddData" asp-controller="Review">Add Review</a>
+        <a class="btn btn-outline-secondary" asp-action="Index" asp-controller="Review">
+            Back to List
+        </a>
+    </div>
+
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Rating</th>
+                        <th>Comment</th>
+                        <th>Action</th>
+                    </tr>
+
+                </thead>
+                @foreach (var review in Model)
+                {
+                    <tr>
+                        <td>@review.CustomerName</td>
+                        <td>@review.CustomerEmail</td>
+
+                        <td>
+                            @for (int i = 0; i < review.Rating; i++)
+                            {
+                                <i class="fas fa-star" style="color:#FF8C00;"></i>
+                            }
+                        </td>
+                        <td>@review.Comment</td>
+                        <td>
+                            <a class="btn btn-outline-secondary"
+                               asp-action="EditReview"
+                               asp-controller="Review"
+                               asp-route-ReviewID="@review.Id">
+                                <i class="bi bi-pencil-square"></i>Edit
+                            </a>
+                            <a class="btn btn-outline-danger" asp-action="DeleteReview" asp-controller="Review"
+                               asp-route-ReviewID="@review.Id"><i class="bi bi-trash"></i>Delete</a>
+                        </td>
+                    </tr>
+                }
+
+            </table>
+</center>
+<script>
+    function rejectCheck() {
+        if (window.confirm('Are you sure to delete the review?')) {
+            return true;
+        } else {
+            window.alert('Thank for your reconsideration!');
+            return false;
+        }
+    }
+</script>
+
+

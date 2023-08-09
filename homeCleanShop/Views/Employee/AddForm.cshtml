@@ -1,0 +1,62 @@
+﻿@model homeCleanShop.Models.Employee
+@{
+    ViewData["Title"] = "AddForm";
+}
+
+<div class="row text">
+    <div class="col-md-8 offset-2">
+        <center>
+            <p><h3>Add An Employee</h3></p>
+            <hr />
+        </center>
+        <form asp-action="AddForm" asp-controller="Employee" method="post"
+              enctype="multipart/form-data">
+            <div class="row">
+                <div class="col-md-8 offset-2">
+
+                    <div asp-validation-summary="ModelOnly" class="text-danger"
+                         role="alert"></div>
+                    <div class="form-group mb-3">
+                        <label class="control-label">Employee Name</label>
+                        <input asp-for="Employee_Name"
+                               class="form-control" />
+                        <span asp-validation-for="Employee_Name"
+                              class="text-danger"></span>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label class="control-label">Employee Experience Year</label>
+                        <input asp-for="Employee_Experience_Year"
+                               class="form-control" />
+                        <span asp-validation-for="Employee_Experience_Year"
+                              class="text-danger"></span>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label class="control-label">Employee Description</label>
+                        <textarea asp-for="Employee_Description"
+                                  class="form-control"></textarea>
+                        <span asp-validation-for="Employee_Description"
+                              class="text-danger"></span>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label>Choose Employee Photo: </label>
+                        <input type="file" name="imagefiles" accept="image/*"
+                               multiple />
+                    </div>
+                    <div class="form-group d-flex justify-content-between">
+                        <a class="btn btn-outline-secondary" asp-action="Index">
+                            Show
+                            All
+                        </a>
+                        <input type="submit" value="Add"
+                               class="btn btn-outline-success float-right" />
+                        
+                    </div>
+        </form>
+    </div>
+</div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
