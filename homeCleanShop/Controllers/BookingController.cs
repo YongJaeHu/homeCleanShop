@@ -114,7 +114,7 @@ public class BookingController : Controller
 
     }
 
-    public async Task<IActionResult> EditBooking(int? BookingID)
+    public async Task<IActionResult> EditBooking(string? BookingID)
     {
 
         if (BookingID == null)
@@ -141,7 +141,7 @@ public class BookingController : Controller
             return RedirectToAction("BookingList", new { msg = "Update Successfully!" });
     }
 
-    public async Task<IActionResult> CancelBooking(int? BookingID)
+    public async Task<IActionResult> CancelBooking(string? BookingID)
     {
         if (BookingID == null)
         {
@@ -170,7 +170,7 @@ public class BookingController : Controller
         }
     }
 
-    public async Task<IActionResult> AcceptBooking(int? BookingID)
+    public async Task<IActionResult> AcceptBooking(string? BookingID)
     {
         if (BookingID == null)
         {
@@ -199,7 +199,7 @@ public class BookingController : Controller
         }
     }
 
-    public async Task<IActionResult> RejectBooking(int? BookingID)
+    public async Task<IActionResult> RejectBooking(string? BookingID)
     {
         if (BookingID == null)
         {
@@ -228,7 +228,7 @@ public class BookingController : Controller
         }
     }
 
-    public async Task<IActionResult> DeleteBooking(int? BookingID)
+    public async Task<IActionResult> DeleteBooking(string? BookingID)
     {
         if (BookingID == null)
         {
@@ -255,7 +255,7 @@ public class BookingController : Controller
         }
     }
 
-    public async Task<IActionResult> DeleteBookingAdmin(int? BookingID)
+    public async Task<IActionResult> DeleteBookingAdmin(string? BookingID)
     {
 
         if (BookingID == null)
